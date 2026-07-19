@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/routes/routes",
+    "pages/discover/discover",
+    "pages/mine/mine",
+    "pages/route-detail/route-detail",
+    "pages/route-map/route-map",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "backgroundColor": "#F7F6F2"
+  },
+  "tabBar": {
+    "color": "#BBBBBB",
+    "selectedColor": "#5B8C5E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "探索",
+        "iconPath": "images/tabbar/explore-normal.png",
+        "selectedIconPath": "images/tabbar/explore-active.png"
+      },
+      {
+        "pagePath": "pages/routes/routes",
+        "text": "路线",
+        "iconPath": "images/tabbar/routes-normal.png",
+        "selectedIconPath": "images/tabbar/routes-active.png"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "text": "发现",
+        "iconPath": "images/tabbar/discover-normal.png",
+        "selectedIconPath": "images/tabbar/discover-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tabbar/mine-normal.png",
+        "selectedIconPath": "images/tabbar/mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

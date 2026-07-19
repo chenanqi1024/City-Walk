@@ -1,0 +1,59 @@
+<view class="page routes-page" style="padding-top: {{topSafeRpx}}rpx;">
+  <view class="routes-header">
+    <view>
+      <view class="page-title">推荐路线</view>
+      <view class="page-subtitle">为你精选 3 条漫步路线</view>
+    </view>
+    <view class="preference-pill">
+      <view class="dot"></view>
+      <text>{{city}} · {{duration}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="route-state card-shadow">
+    <view class="route-state-icon">◌</view>
+    <view class="route-state-title">{{statusText}}</view>
+    <view class="route-state-desc">后端正在根据当前城市、时长和预算生成推荐</view>
+  </view>
+
+  <view wx:elif="{{routes.length === 0}}" class="route-state card-shadow">
+    <view class="route-state-icon muted">!</view>
+    <view class="route-state-title">{{statusText || '还没有当前条件的路线'}}</view>
+    <view class="route-state-desc">请回到探索页确认城市，或重新生成一次路线</view>
+    <view class="state-action tap-scale" bindtap="retryGenerate">重新生成</view>
+  </view>
+
+  <view wx:else class="routes-list">
+    <view
+      wx:for="{{routes}}"
+      wx:key="id"
+      class="route-card card-shadow tap-scale"
+      data-id="{{item.id}}"
+      bindtap="openDetail"
+    >
+      <view class="route-cover-wrap">
+        <image class="route-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="route-mask"></view>
+        <view class="favorite {{item.favorited ? 'active' : ''}}" data-id="{{item.id}}" catchtap="handleFavorite">
+          ♥
+        </view>
+        <view class="route-info">
+          <view class="tag-row">
+            <view wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag light">{{tag}}</view>
+          </view>
+          <view class="route-title">{{item.title}}</view>
+          <view class="route-desc">{{item.shortDesc}}</view>
+          <view class="route-meta">
+            <view class="meta-item star">★ {{item.rating}}</view>
+            <view class="divider"></view>
+            <view class="meta-item">⌁ {{item.distance}}</view>
+            <view class="divider"></view>
+            <view class="meta-item">◷ {{item.time}}</view>
+            <view class="divider"></view>
+            <view class="difficulty {{item.difficulty === '轻松' ? 'easy' : 'mid'}}">{{item.difficulty}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

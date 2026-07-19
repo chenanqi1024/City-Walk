@@ -1,0 +1,22 @@
+# 改动日志
+
+- 时间：2026-07-19 23:33:24 CST
+- 用户 Prompt：`帮这个小程序接入后端API，这是API文档：https://citywalk-api-wiki.xunmengwinter.workers.dev/ 这是OpenAPI文档：https://citywalk-api-wiki.xunmengwinter.workers.dev/openapi.json`
+- API 文档：
+  - OpenAPI：`https://citywalk-api-wiki.xunmengwinter.workers.dev/openapi.json`
+  - Base URL：`https://citywalk-fzgahtvdow.cn-hangzhou.fcapp.run`
+- 改动范围：
+  - 新增 `miniprogram/utils/api.ts`，封装 `/cities`、`/nearby`、`/generateRoute` 请求，并将后端响应归一化为小程序现有页面使用的数据结构。
+  - 扩展 `miniprogram/utils/routes.ts`，支持当前生成路线缓存、后端 POI 字段、后端附近好去处字段和更严格的缓存校验。
+  - 首页接入 `/cities` 获取支持城市，接入 `/nearby` 获取附近好去处。
+  - 首页“生成路线”接入 `POST /generateRoute`，成功后缓存云端路线并跳转路线页，失败时保留本地兜底路线。
+  - 路线列表、路线详情、地图页、我的收藏页改为读取当前生成路线缓存。
+- 验证：
+  - `npx --yes -p typescript@5.9.3 tsc --noEmit` 通过。
+  - 页面路径自检通过。
+  - TabBar 图标路径自检通过。
+  - `GET /health` 返回 `ok: true`，服务 `fc-citywalk03` 正常。
+  - 实测 `/cities`、`/nearby`、`/generateRoute` 可达。
+  - `miniprogram` 目录约 216KB。
+- 注意事项：
+  - 微信小程序真机/线上请求需要在微信公众平台配置合法 request 域名：`citywalk-fzgahtvdow.cn-hangzhou.fcapp.run`。

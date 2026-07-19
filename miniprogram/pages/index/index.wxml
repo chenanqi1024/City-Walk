@@ -1,0 +1,102 @@
+<view class="page explore-page">
+  <view class="hero" style="padding-top: {{heroTopPaddingRpx}}rpx;">
+    <image class="hero-image" src="{{heroImage}}" mode="aspectFill"></image>
+    <view class="hero-mask"></view>
+    <view class="hero-copy">
+      <view class="hero-kicker">City Walk · 周末行</view>
+      <view class="hero-title">为你定制</view>
+      <view class="hero-title">专属漫步路线</view>
+    </view>
+  </view>
+
+  <view class="planner card-shadow">
+    <view class="field">
+      <view class="field-label">⌖ 漫步城市</view>
+      <view class="select-control tap-scale" bindtap="toggleCityPicker">
+        <text>{{formData.city}}</text>
+        <text class="chevron {{showCityPicker ? 'open' : ''}}">⌄</text>
+      </view>
+      <view wx:if="{{showCityPicker}}" class="city-menu card-shadow">
+        <view
+          wx:for="{{cities}}"
+          wx:key="*this"
+          class="city-option {{formData.city === item ? 'active' : ''}}"
+          data-city="{{item}}"
+          bindtap="chooseCity"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="field-label">◷ 游玩时长</view>
+      <view class="segment-row">
+        <view
+          wx:for="{{durations}}"
+          wx:key="*this"
+          class="segment tap-scale {{formData.duration === item ? 'active primary' : ''}}"
+          data-value="{{item}}"
+          bindtap="chooseDuration"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="field-label accent">★ 消费预算</view>
+      <view class="segment-row">
+        <view
+          wx:for="{{budgets}}"
+          wx:key="*this"
+          class="segment tap-scale {{formData.budget === item ? 'active accent' : ''}}"
+          data-value="{{item}}"
+          bindtap="chooseBudget"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="generate tap-scale {{generating ? 'loading' : ''}}" bindtap="generateRoutes">
+      <text class="spark">{{generating ? '◌' : '✦'}}</text>
+      <text>{{generating ? '正在智能生成路线…' : '生成 3 条推荐路线'}}</text>
+    </view>
+  </view>
+
+  <view class="content-section">
+    <view class="section-head">
+      <view class="section-title">附近好去处</view>
+      <view class="section-link">查看全部</view>
+    </view>
+    <scroll-view class="nearby-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="nearby-row">
+        <view wx:for="{{nearbyPlaces}}" wx:key="id" class="nearby-card card-shadow tap-scale">
+          <view class="nearby-cover-wrap">
+            <image class="nearby-cover" src="{{item.img}}" mode="aspectFill"></image>
+            <view class="nearby-type">{{item.type}}</view>
+          </view>
+          <view class="nearby-body">
+            <view class="nearby-name ellipsis">{{item.name}}</view>
+            <view class="nearby-dist">⌖ {{item.dist}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="content-section city-section">
+    <view class="section-title">热门漫步城市</view>
+    <view class="city-grid">
+      <view wx:for="{{hotCities}}" wx:key="name" class="hot-city tap-scale">
+        <image class="hot-city-image" src="{{item.img}}" mode="aspectFill"></image>
+        <view class="hot-city-mask"></view>
+        <view class="hot-city-copy">
+          <view class="hot-city-name">{{item.name}}</view>
+          <view class="hot-city-sub">{{item.sub}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

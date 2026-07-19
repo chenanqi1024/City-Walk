@@ -1,0 +1,43 @@
+<view class="page discover-page" style="padding-top: {{topSafeRpx}}rpx;">
+  <view class="discover-header">
+    <view class="page-title">发现</view>
+    <view class="page-subtitle">遇见更多漫步故事</view>
+  </view>
+
+  <view class="featured tap-scale">
+    <image class="featured-image" src="{{bannerImage}}" mode="aspectFill"></image>
+    <view class="featured-mask"></view>
+    <view class="featured-copy">
+      <view class="featured-kicker">本周精选</view>
+      <view class="featured-title">杭城最美</view>
+      <view class="featured-title">秋日漫步</view>
+      <view class="featured-action">查看路线 ›</view>
+    </view>
+  </view>
+
+  <view class="topic-section">
+    <view class="section-title small">热门话题</view>
+    <scroll-view class="topic-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="topic-row">
+        <view wx:for="{{topics}}" wx:key="*this" class="topic-chip card-shadow tap-scale">{{item}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="article-section">
+    <view class="section-title small">漫步日记</view>
+    <view class="article-list">
+      <view wx:for="{{articles}}" wx:key="id" class="article-card card-shadow tap-scale">
+        <image class="article-cover" src="{{item.img}}" mode="aspectFill"></image>
+        <view class="article-copy">
+          <view class="article-title line-clamp-2">{{item.title}}</view>
+          <view class="article-meta">
+            <text>{{item.author}}</text>
+            <text class="sep">·</text>
+            <text>{{item.reads}} 阅读</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

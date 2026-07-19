@@ -1,0 +1,51 @@
+<view class="map-page">
+  <map
+    id="routeMap"
+    class="route-map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="14"
+    markers="{{markers}}"
+    polyline="{{polyline}}"
+    bindmarkertap="selectMarker"
+    show-location
+  ></map>
+
+  <view class="map-back tap-scale" style="top: {{controlTopRpx}}rpx;" bindtap="goBack">‹</view>
+  <view class="route-pill card-shadow" style="top: {{pillTopRpx}}rpx;">{{route.title}}</view>
+
+  <view class="point-drawer {{drawerOpen ? 'open' : ''}}">
+    <view class="drawer-toggle" bindtap="toggleDrawer">
+      <view class="handle"></view>
+      <view class="drawer-head">
+        <view class="drawer-title">路线打卡点</view>
+        <view class="drawer-count">{{route.spots}} 个 {{drawerOpen ? '⌄' : '⌃'}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!drawerOpen}}" class="active-point">
+      <view class="active-index">{{activePoint.id}}</view>
+      <view class="active-copy">
+        <view class="active-name">{{activePoint.name}}</view>
+        <view class="active-desc ellipsis">{{activePoint.desc}}</view>
+      </view>
+    </view>
+
+    <scroll-view wx:if="{{drawerOpen}}" class="drawer-list" scroll-y enhanced show-scrollbar="{{false}}">
+      <view
+        wx:for="{{route.points}}"
+        wx:key="id"
+        class="drawer-point {{activePointId === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="selectPoint"
+      >
+        <view class="drawer-point-index">{{item.id}}</view>
+        <view class="drawer-point-copy">
+          <view class="drawer-point-name">{{item.name}}</view>
+          <view class="drawer-point-desc ellipsis">{{item.desc}}</view>
+        </view>
+        <view wx:if="{{activePointId === item.id}}" class="drawer-dot"></view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

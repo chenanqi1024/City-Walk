@@ -1,0 +1,81 @@
+<view class="page detail-page">
+  <view class="detail-hero">
+    <image class="hero-cover" src="{{route.cover}}" mode="aspectFill"></image>
+    <view class="hero-gradient"></view>
+    <view class="back-control tap-scale" style="top: {{controlTopRpx}}rpx;" bindtap="goBack">‹</view>
+  </view>
+
+  <view class="detail-body">
+    <view class="title-row">
+      <view class="detail-title">{{route.title}}</view>
+      <view class="detail-favorite tap-scale {{favorited ? 'active' : ''}}" bindtap="toggleFavorite">♥</view>
+    </view>
+
+    <view class="rating-row">
+      <text class="rating-star">★</text>
+      <text class="rating-score">{{route.rating}}</text>
+      <text class="rating-count">{{route.reviews}} 人评价</text>
+    </view>
+
+    <view class="detail-tags">
+      <view wx:for="{{route.tags}}" wx:key="*this" class="tag">{{item}}</view>
+    </view>
+
+    <view class="meta-grid">
+      <view class="meta-box">
+        <view class="meta-value">{{route.distance}}</view>
+        <view class="meta-label">路线距离</view>
+      </view>
+      <view class="meta-box">
+        <view class="meta-value">{{route.time}}</view>
+        <view class="meta-label">预计时长</view>
+      </view>
+      <view class="meta-box">
+        <view class="meta-value">{{route.difficulty}}</view>
+        <view class="meta-label">难度</view>
+      </view>
+      <view class="meta-box">
+        <view class="meta-value">{{route.spots}} 个</view>
+        <view class="meta-label">打卡点</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">路线简介</view>
+      <view class="route-paragraph">{{route.desc}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">路线亮点</view>
+      <view class="highlight-list">
+        <view wx:for="{{route.highlights}}" wx:key="*this" class="highlight-item">
+          <view class="highlight-index">{{index + 1}}</view>
+          <view class="highlight-text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">打卡点顺序</view>
+      <view class="point-list">
+        <view wx:for="{{route.points}}" wx:key="id" class="point-item">
+          <view class="point-rail">
+            <view class="point-number">{{item.id}}</view>
+            <view wx:if="{{index < route.points.length - 1}}" class="point-line"></view>
+          </view>
+          <view class="point-copy">
+            <view class="point-name">{{item.name}}</view>
+            <view class="point-desc">{{item.desc}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-action">
+    <view class="map-action tap-scale" bindtap="openMap">
+      <text>打开地图查看 POI</text>
+      <text class="map-action-arrow">›</text>
+    </view>
+  </view>
+</view>

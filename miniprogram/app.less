@@ -1,0 +1,96 @@
+page {
+  min-height: 100vh;
+  background: #f7f6f2;
+  color: #2c2c2c;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+view,
+text,
+image,
+scroll-view,
+map {
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  background: #f7f6f2;
+  padding-bottom: 36rpx;
+}
+
+.safe-top {
+  padding-top: 96rpx;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  color: #2c2c2c;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.section-link {
+  color: #5b8c5e;
+  font-size: 24rpx;
+  line-height: 1.25;
+}
+
+.card-shadow {
+  box-shadow: 0 6rpx 28rpx rgba(0, 0, 0, 0.08);
+}
+
+.tap-scale {
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.tap-scale:active {
+  transform: scale(0.975);
+  opacity: 0.9;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42rpx;
+  padding: 0 18rpx;
+  border-radius: 999rpx;
+  background: #eef4ef;
+  color: #5b8c5e;
+  font-size: 22rpx;
+  font-weight: 600;
+  line-height: 42rpx;
+}
+
+.tag.light {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,77 @@
+<view class="page mine-page">
+  <view class="profile" style="padding-top: {{profileTopPaddingRpx}}rpx;">
+    <view class="profile-head">
+      <view class="avatar">我</view>
+      <view class="profile-copy">
+        <view class="profile-name">漫步小达人</view>
+        <view class="profile-sub">杭州 · 漫步爱好者</view>
+      </view>
+      <view class="profile-more">•••</view>
+    </view>
+
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{walkCount}}</view>
+        <view class="stat-label">漫步次数</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{totalDistance}}</view>
+        <view class="stat-label">里程 km</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{favoriteCount}}</view>
+        <view class="stat-label">收藏路线</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="mine-section">
+    <view class="section-head">
+      <view class="section-title">我的收藏</view>
+      <view wx:if="{{favoriteRoutes.length > 0}}" class="section-link">{{favoriteRoutes.length}} 条路线</view>
+    </view>
+
+    <view wx:if="{{favoriteRoutes.length === 0}}" class="empty">
+      <view class="empty-icon">♡</view>
+      <view class="empty-title">还没有收藏的路线</view>
+      <view class="empty-desc">在路线页面点击心形图标即可收藏喜欢的漫步路线</view>
+    </view>
+
+    <view wx:else class="favorite-list">
+      <view
+        wx:for="{{favoriteRoutes}}"
+        wx:key="id"
+        class="favorite-card card-shadow tap-scale"
+        data-id="{{item.id}}"
+        bindtap="openDetail"
+      >
+        <image class="favorite-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="favorite-copy">
+          <view class="favorite-title line-clamp-2">{{item.title}}</view>
+          <view class="favorite-meta">
+            <text>★ {{item.rating}}</text>
+            <text class="sep">·</text>
+            <text>{{item.distance}}</text>
+            <text class="sep">·</text>
+            <text>{{item.time}}</text>
+          </view>
+          <view class="mini-tags">
+            <view wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="mini-tag">{{tag}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="mine-section">
+    <view class="menu-card card-shadow">
+      <view wx:for="{{menuItems}}" wx:key="label" class="menu-row tap-scale">
+        <view class="menu-left">
+          <view class="menu-icon">{{item.icon}}</view>
+          <view class="menu-label">{{item.label}}</view>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+    </view>
+  </view>
+</view>
